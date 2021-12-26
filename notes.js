@@ -11,9 +11,7 @@ const getNotes = function () {
 const addNote = function (title, body) {
     const notes = loadNotes()
 
-    const duplicateNotes = notes.filter(function (note) {
-        return note.title === title
-    })
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     if (duplicateNotes.length === 0) {
         notes.push({
@@ -22,9 +20,9 @@ const addNote = function (title, body) {
         })
     
         saveNotes(notes)
-        console.log("New note added")
+        console.log(chalk.green("New note added"))
     } else {
-        console.log("Note title already exists")
+        console.log(chalk.red("Note title already exists"))
     }
     
 }
@@ -32,15 +30,13 @@ const addNote = function (title, body) {
 const deleteNote = function (title) {
     const notes = loadNotes()
 
-    const notesKeep = notes.filter(function (note) {
-        return note.title !== title
-    })
+    const notesKeep = notes.filter((note) => note.title !== title)
 
     if (notesKeep.length === notes.length) {
-        console.log("Note title not found")
+        console.log(chalk.green("Note title not found"))
     } else {
         saveNotes(notesKeep)
-        console.log("Note deleted")
+        console.log(chalk.red("Note deleted"))
     }
 }
 
